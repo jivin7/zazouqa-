@@ -11,10 +11,10 @@
   <meta property="og:title" content="Zaqzouqa Marketing City" />
   <meta property="og:description" content="Smart marketing, made fun. Branding, content, social, ads & more." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/public/hero-duo.png" />
+  <meta property="og:image" content="/hero-duo.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" href="/public/icon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="/public/apple-icon.png" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
@@ -1172,7 +1172,7 @@
         <div class="hero-visual">
           <div class="hero-frame" id="heroFrame">
             <div class="hero-art">
-              <img src="public/hero-duo.png" alt="Nardeen and the Zaqzouqa mascot welcoming you to Marketing City" width="720" height="640" />
+              <img src="/hero-duo.png" alt="Nardeen and the Zaqzouqa mascot welcoming you to Marketing City" width="720" height="640" />
             </div>
           </div>
           <aside class="speech animate-float" id="speechBubble">
@@ -1223,7 +1223,7 @@
           <div class="reveal reveal-right" style="position:relative">
             <div class="map-frame">
               <div class="map-art">
-                <img src="public/city-map.png" alt="Illustrated map of Marketing City showing every district" width="900" height="620" />
+                <img src="/city-map.png" alt="Illustrated map of Marketing City showing every district" width="900" height="620" />
               </div>
             </div>
             <aside class="fun-fact animate-float-slow">
@@ -1241,7 +1241,7 @@
         <div class="team-grid">
           <div class="member reveal reveal-left">
             <div class="member-photo" data-tilt>
-              <img src="public/nardeen.png" alt="Nardeen, Chief Strategy &amp; Creativity Officer" width="200" height="200" />
+              <img src="/nardeen.png" alt="Nardeen, Chief Strategy &amp; Creativity Officer" width="200" height="200" />
             </div>
             <div>
               <h3>Nardeen <svg class="animate-wiggle" viewBox="0 0 24 24" fill="currentColor"><path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.52l4.276 3.664a1 1 0 0 0 1.516-.294z"/><path d="M5 21h14"/></svg></h3>
@@ -1251,7 +1251,7 @@
           </div>
           <div class="member reverse reveal reveal-right">
             <div class="member-photo" data-tilt>
-              <img src="public/mascot.png" alt="Zaqzouqa, Chief Fun Officer" width="200" height="200" />
+              <img src="/mascot.png" alt="Zaqzouqa, Chief Fun Officer" width="200" height="200" />
             </div>
             <div>
               <h3>Zaqzouqa</h3>
@@ -1317,7 +1317,7 @@
           </a>
         </div>
         <div class="cta-art">
-          <img class="highfive" src="public/cta-highfive.png" alt="Nardeen and Zaqzouqa celebrating with a high five" width="520" height="420" />
+          <img class="highfive" src="/cta-highfive.png" alt="Nardeen and Zaqzouqa celebrating with a high five" width="520" height="420" />
         </div>
       </div>
     </section>
@@ -1399,7 +1399,7 @@
     </div>
     <div class="zaq-body">
       <button class="zaq-char" id="zaqCharBtn" type="button" aria-label="Talk to Zaqzouqa guide">
-        <img id="zaqExprImg" src="public/zaq-happy.png" alt="Zaqzouqa" width="140" height="160" />
+        <img id="zaqExprImg" src="/zaq-happy.png" alt="Zaqzouqa" width="140" height="160" />
         <span class="live" aria-hidden="true"></span>
       </button>
       <span class="zaq-label" aria-hidden="true">Need help?</span>
@@ -1689,9 +1689,9 @@
 
     /* ---- Testimonials ---- */
     const TESTIMONIALS = [
-      { quote: "Zaqzouqa and Nardeen turned our tiny idea into a brand people actually love. We saw real growth (and had fun doing it).", name: "Lina M.", role: "Boutique Owner", avatar: "public/avatar-lina.png" },
-      { quote: "Their strategy is next level—and Zaqzouqa's creativity? Pure gold. Our social media has never looked this good!", name: "Omar K.", role: "Co-Founder", avatar: "public/avatar-omar.png" },
-      { quote: "From content to ads, everything just works. They feel like part of our team!", name: "Sara R.", role: "Online Store Owner", avatar: "public/avatar-sara.png" },
+      { quote: "Zaqzouqa and Nardeen turned our tiny idea into a brand people actually love. We saw real growth (and had fun doing it).", name: "Lina M.", role: "Boutique Owner", avatar: "/avatar-lina.png" },
+      { quote: "Their strategy is next level—and Zaqzouqa's creativity? Pure gold. Our social media has never looked this good!", name: "Omar K.", role: "Co-Founder", avatar: "/avatar-omar.png" },
+      { quote: "From content to ads, everything just works. They feel like part of our team!", name: "Sara R.", role: "Online Store Owner", avatar: "/avatar-sara.png" },
     ];
 
     const stars = Array.from({ length: 5 }).map((_, i) =>
@@ -1788,12 +1788,12 @@
       if (!guide || !exprImg) return;
 
       const EXPR = {
-        happy: "public/zaq-happy.png",
-        talk: "public/zaq-talk.png",
-        think: "public/zaq-think.png",
-        point: "public/zaq-point.png",
-        excited: "public/zaq-excited.png",
-        wink: "public/zaq-wink.png",
+        happy: "/zaq-happy.png",
+        talk: "/zaq-talk.png",
+        think: "/zaq-think.png",
+        point: "/zaq-point.png",
+        excited: "/zaq-excited.png",
+        wink: "/zaq-wink.png",
       };
 
       // Preload expression images

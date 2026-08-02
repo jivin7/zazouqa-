@@ -1,9 +1,5 @@
 # Dependencies & build
 node_modules/
-.next/
-out/
-dist/
-build/
 .vercel/
 
 # Env
@@ -18,13 +14,3 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
-
-# v0 / sandbox leftovers
-__v0_runtime_loader.js
-__v0_devtools.tsx
-__v0_jsx-dev-runtime.ts
-.snowflake/
-.v0-trash/
-
-# Keep images — do not ignore public assets
-!public/**

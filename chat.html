@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#3a1220" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Chat with Zaqzouqa — Marketing City</title>
+  <meta name="description" content="Chat with Zaqzouqa about social media, branding, AI mascots & more." />
+  <link rel="icon" href="/public/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/public/apple-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light;
+      --background: oklch(0.97 0.012 60);
+      --foreground: oklch(0.28 0.09 15);
+      --card: oklch(0.995 0.006 80);
+      --primary: oklch(0.32 0.11 12);
+      --primary-fg: oklch(0.98 0.01 80);
+      --secondary: oklch(0.93 0.03 40);
+      --muted: oklch(0.5 0.05 20);
+      --accent: oklch(0.7 0.14 15);
+      --accent-fg: oklch(0.98 0.01 80);
+      --border: oklch(0.9 0.03 40);
+      --gold: oklch(0.78 0.13 70);
+      --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+      --font-display: "Baloo 2", ui-sans-serif, system-ui, sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      height: 100dvh;
+      font-family: var(--font-sans);
+      background: var(--background);
+      color: var(--foreground);
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+    }
+
+    body {
+      background:
+        radial-gradient(ellipse 50% 40% at 10% 10%, color-mix(in oklch, var(--accent) 16%, transparent), transparent 55%),
+        radial-gradient(ellipse 45% 35% at 90% 0%, color-mix(in oklch, var(--gold) 20%, transparent), transparent 50%),
+        radial-gradient(ellipse 40% 40% at 80% 100%, color-mix(in oklch, var(--secondary) 90%, transparent), transparent 50%),
+        var(--background);
+      padding:
+        env(safe-area-inset-top, 0px)
+        env(safe-area-inset-right, 0px)
+        env(safe-area-inset-bottom, 0px)
+        env(safe-area-inset-left, 0px);
+    }
+
+    a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+    button, textarea { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent; }
+    img { display: block; max-width: 100%; height: auto; }
+
+    .app {
+      height: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      padding: 0.5rem;
+      gap: 0.5rem;
+      min-height: 0;
+      width: 100%;
+    }
+
+    /* Top bar */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.65rem;
+      padding: 0.55rem 0.7rem;
+      background: color-mix(in oklch, var(--card) 88%, transparent);
+      border: 1px solid color-mix(in oklch, var(--border) 80%, transparent);
+      border-radius: 1.1rem;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px -22px color-mix(in oklch, var(--primary) 35%, transparent);
+      animation: slide-down 0.7s var(--ease) both;
+      min-width: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .brand-avatar {
+      position: relative;
+      width: 2.6rem;
+      height: 2.6rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid color-mix(in oklch, var(--accent) 35%, transparent);
+      background: var(--secondary);
+      flex-shrink: 0;
+      animation: soft-bob 4.5s ease-in-out infinite;
+    }
+
+    .brand-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .online-dot {
+      position: absolute;
+      right: 1px;
+      bottom: 1px;
+      width: 0.7rem;
+      height: 0.7rem;
+      border-radius: 50%;
+      background: #2fbf71;
+      border: 2px solid var(--card);
+      animation: pulse-dot 2.4s ease-in-out infinite;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-text .status {
+      color: #2fbf71;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .icon-btn, .ghost-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      cursor: pointer;
+      transition: transform 0.3s var(--ease), background 0.25s, box-shadow 0.3s;
+    }
+
+    .icon-btn {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .ghost-btn {
+      padding: 0.5rem 0.75rem;
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: var(--primary);
+    }
+
+    .ghost-btn .ghost-label { display: none; }
+
+    .icon-btn:hover, .ghost-btn:hover {
+      transform: translateY(-2px);
+      background: var(--secondary);
+      box-shadow: 0 10px 20px -14px var(--primary);
+    }
+
+    .icon-btn svg, .ghost-btn svg {
+      width: 1.1rem;
+      height: 1.1rem;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Shell */
+    .shell {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .side {
+      display: none;
+      background: color-mix(in oklch, var(--card) 90%, transparent);
+      border: 1px solid color-mix(in oklch, var(--border) 80%, transparent);
+      border-radius: 1.5rem;
+      padding: 1.25rem;
+      backdrop-filter: blur(12px);
+      animation: fade-in 0.8s var(--ease) both;
+    }
+
+    .side-mascot {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: var(--secondary);
+      border: 2px solid color-mix(in oklch, var(--accent) 25%, transparent);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .side-mascot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: soft-bob 6s ease-in-out infinite;
+    }
+
+    .side h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .side p {
+      margin-top: 0.45rem;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .side-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 1rem;
+    }
+
+    .tip {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: color-mix(in oklch, var(--accent) 12%, transparent);
+      border-radius: 999px;
+      padding: 0.35rem 0.7rem;
+    }
+
+    .chat-panel {
+      min-height: 0;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      background: color-mix(in oklch, var(--card) 92%, transparent);
+      border: 1px solid color-mix(in oklch, var(--border) 80%, transparent);
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 20px 50px -30px color-mix(in oklch, var(--primary) 40%, transparent);
+      animation: rise-in 0.75s var(--ease) both;
+    }
+
+    .messages {
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 0.9rem 0.75rem 0.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+    }
+
+    .messages::-webkit-scrollbar { width: 8px; }
+    .messages::-webkit-scrollbar-thumb {
+      background: color-mix(in oklch, var(--border) 90%, var(--accent));
+      border-radius: 999px;
+    }
+
+    .day-pill {
+      align-self: center;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--secondary);
+      border-radius: 999px;
+      padding: 0.3rem 0.75rem;
+      animation: fade-in 0.6s var(--ease) both;
+    }
+
+    .row {
+      display: flex;
+      gap: 0.5rem;
+      max-width: min(94%, 34rem);
+      animation: bubble-in 0.55s var(--ease) both;
+      min-width: 0;
+    }
+
+    .row.bot { align-self: flex-start; }
+    .row.user { align-self: flex-end; flex-direction: row-reverse; }
+
+    .bubble-avatar {
+      width: 2.1rem;
+      height: 2.1rem;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid color-mix(in oklch, var(--accent) 25%, transparent);
+      background: var(--secondary);
+      margin-top: 0.15rem;
+    }
+
+    .bubble-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .bubble {
+      padding: 0.7rem 0.9rem;
+      border-radius: 1.1rem;
+      line-height: 1.5;
+      font-size: 0.92rem;
+      font-weight: 600;
+      position: relative;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      box-shadow: 0 8px 20px -16px color-mix(in oklch, var(--primary) 40%, transparent);
+      min-width: 0;
+    }
+
+    .row.bot .bubble {
+      background: var(--secondary);
+      color: var(--foreground);
+      border-bottom-left-radius: 0.35rem;
+    }
+
+    .row.user .bubble {
+      background: var(--primary);
+      color: var(--primary-fg);
+      border-bottom-right-radius: 0.35rem;
+    }
+
+    .meta {
+      margin-top: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--muted);
+      padding-inline: 0.2rem;
+    }
+
+    .row.user .meta { text-align: right; color: color-mix(in oklch, var(--primary) 55%, transparent); }
+
+    .typing {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.95rem 1.1rem;
+      min-width: 3.8rem;
+    }
+
+    .typing span {
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: typing-dot 1.3s ease-in-out infinite;
+    }
+
+    .typing span:nth-child(2) { animation-delay: 0.18s; }
+    .typing span:nth-child(3) { animation-delay: 0.36s; }
+
+    /* Composer */
+    .composer-wrap {
+      border-top: 1px solid color-mix(in oklch, var(--border) 75%, transparent);
+      background: color-mix(in oklch, var(--card) 96%, transparent);
+      padding: 0.65rem 0.7rem 0.75rem;
+    }
+
+    .quick {
+      display: flex;
+      gap: 0.45rem;
+      overflow-x: auto;
+      padding-bottom: 0.55rem;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+    }
+
+    .quick::-webkit-scrollbar { display: none; }
+
+    .chip {
+      flex-shrink: 0;
+      border: 1.5px solid color-mix(in oklch, var(--accent) 30%, transparent);
+      background: color-mix(in oklch, var(--accent) 8%, var(--card));
+      color: var(--primary);
+      border-radius: 999px;
+      padding: 0.5rem 0.85rem;
+      min-height: 40px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.3s var(--ease), background 0.25s, border-color 0.25s;
+      animation: chip-in 0.5s var(--ease) both;
+    }
+
+    .chip:hover {
+      transform: translateY(-2px);
+      background: color-mix(in oklch, var(--accent) 16%, var(--card));
+      border-color: var(--accent);
+    }
+
+    .composer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.55rem;
+      align-items: end;
+      background: var(--background);
+      border: 2px solid var(--border);
+      border-radius: 1.35rem;
+      padding: 0.45rem 0.45rem 0.45rem 1rem;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .composer:focus-within {
+      border-color: color-mix(in oklch, var(--accent) 55%, transparent);
+      box-shadow: 0 0 0 4px color-mix(in oklch, var(--accent) 14%, transparent);
+    }
+
+    .composer textarea {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      resize: none;
+      background: transparent;
+      min-height: 1.5rem;
+      max-height: 7.5rem;
+      padding: 0.55rem 0;
+      line-height: 1.45;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .composer textarea::placeholder {
+      color: color-mix(in oklch, var(--muted) 75%, transparent);
+      font-weight: 600;
+    }
+
+    .send {
+      width: 2.85rem;
+      height: 2.85rem;
+      min-width: 44px;
+      min-height: 44px;
+      border-radius: 999px;
+      border: 0;
+      background: var(--accent);
+      color: var(--accent-fg);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: transform 0.3s var(--ease), background 0.25s, box-shadow 0.3s;
+    }
+
+    .send:hover {
+      transform: scale(1.06);
+      box-shadow: 0 10px 22px -12px var(--accent);
+    }
+
+    .send:active { transform: scale(0.96); }
+    .send:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .send svg {
+      width: 1.15rem;
+      height: 1.15rem;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .hint {
+      margin-top: 0.45rem;
+      text-align: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    @keyframes slide-down {
+      from { opacity: 0; transform: translateY(-12px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes rise-in {
+      from { opacity: 0; transform: translateY(18px) scale(0.98); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes bubble-in {
+      from { opacity: 0; transform: translateY(14px) scale(0.96); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes chip-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes soft-bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 color-mix(in oklch, #2fbf71 40%, transparent); }
+      50% { transform: scale(1.08); box-shadow: 0 0 0 6px transparent; }
+    }
+    @keyframes typing-dot {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.45; }
+      40% { transform: translateY(-5px); opacity: 1; }
+    }
+
+    @media (min-width: 480px) {
+      .ghost-btn .ghost-label { display: inline; }
+      .brand-avatar { width: 3rem; height: 3rem; }
+      .brand-text strong { font-size: 1.15rem; }
+      .brand-text span { font-size: 0.78rem; }
+      .app { padding: 0.75rem; gap: 0.75rem; }
+      .topbar { padding: 0.65rem 0.85rem; border-radius: 1.25rem; }
+      .chat-panel { border-radius: 1.5rem; }
+      .messages { padding: 1.1rem 1rem 0.5rem; gap: 0.85rem; }
+      .bubble { font-size: 0.95rem; padding: 0.8rem 1rem; }
+    }
+    @media (min-width: 900px) {
+      .app { padding: 1rem; gap: 1rem; }
+      .shell { grid-template-columns: 280px 1fr; }
+      .side { display: block; }
+      .messages { padding: 1.4rem 1.35rem 0.75rem; }
+      .composer-wrap { padding: 0.9rem 1.1rem 1.05rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .topbar, .shell, .side, .chat-panel, .row, .chip, .brand-avatar, .side-mascot img,
+      .online-dot, .typing span { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-avatar">
+          <img src="public/mascot.png" alt="Zaqzouqa" />
+          <span class="online-dot" aria-hidden="true"></span>
+        </div>
+        <div class="brand-text">
+          <strong>Zaqzouqa</strong>
+          <span><span class="status">● Online</span> · Chief Fun Officer</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" id="clearChat" type="button" title="New chat" aria-label="Start a new chat">
+          <svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        </button>
+        <a class="ghost-btn" href="index.html" aria-label="Back to Marketing City">
+          <svg viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+          <span class="ghost-label">City</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="shell">
+      <aside class="side">
+        <div class="side-mascot">
+          <img src="public/mascot.png" alt="Zaqzouqa mascot" />
+        </div>
+        <h2>Hey, I'm Zaqzouqa!</h2>
+        <p>
+          Came for social media tips — or to learn how to make an AI Zaqzouqa of your own?
+          I can coach both. Ask away!
+        </p>
+        <div class="side-chips">
+          <span class="tip">Social tips</span>
+          <span class="tip">Content ideas</span>
+          <span class="tip">Reels</span>
+          <span class="tip">AI Zaqzouqa</span>
+          <span class="tip">Prompts</span>
+        </div>
+      </aside>
+
+      <section class="chat-panel" aria-label="Chat with Zaqzouqa">
+        <div class="messages" id="messages" role="log" aria-live="polite"></div>
+
+        <div class="composer-wrap">
+          <div class="quick" id="quickReplies" aria-label="Suggested questions"></div>
+          <form class="composer" id="chatForm">
+            <label class="sr-only" for="chatInput" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Message</label>
+            <textarea id="chatInput" rows="1" placeholder="Ask how to grow on social media..." autocomplete="off"></textarea>
+            <button class="send" id="sendBtn" type="submit" aria-label="Send message">
+              <svg viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            </button>
+          </form>
+          <p class="hint">Built for social media tips · Zaqzouqa style</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const messagesEl = document.getElementById("messages");
+    const form = document.getElementById("chatForm");
+    const input = document.getElementById("chatInput");
+    const sendBtn = document.getElementById("sendBtn");
+    const quickEl = document.getElementById("quickReplies");
+    const clearBtn = document.getElementById("clearChat");
+
+    const QUICK = [
+      "How to win on social media",
+      "Give me content ideas",
+      "Best posting schedule?",
+      "How to grow followers",
+      "Reels tips",
+      "How to make Zaqzouqa on AI",
+      "Give me an AI prompt",
+    ];
+
+    const REPLIES = [
+      {
+        keys: ["hi", "hello", "hey", "yo", "salam", "hola"],
+        replies: [
+          "Hiii! Welcome to Social Media Station! I'm Zaqzouqa. Want to post better, grow faster, or finally feel confident online? Ask away — or tap a chip below!",
+          "Heyyy! Most people visit me to crush social media (smart move). Tell me your platform — Instagram, TikTok, Facebook — or say “how to win on social media”!",
+          "Hello hello! Ready for social tips that actually feel doable? Ask about content ideas, reels, growth, or engagement. Snacks optional… but recommended.",
+        ],
+      },
+      {
+        keys: [
+          "win on social",
+          "good in social",
+          "good at social",
+          "social media tip",
+          "social media tips",
+          "how to do social",
+          "succeed on social",
+          "better on social",
+          "social media help",
+          "help with social",
+          "grow on social",
+          "social media strategy",
+          "social strategy",
+        ],
+        replies: [
+`Alright — Social Media Station masterclass (tiny version):
+
+1) Pick ONE main platform first (don’t drown posting everywhere).
+2) Know your person: who are you talking to, and what do they need?
+3) Post with a pattern: Teach · Show · Sell · Connect (repeat).
+4) Hooks in 1 second: question, bold claim, or “wait for it…” energy.
+5) Talk WITH people — reply to comments like a friend, not a robot.
+6) Consistency > virality. 3–5 good posts/week beats 1 random masterpiece.
+7) Track what worked. Double down. Drop what flopped (no hard feelings).
+
+Want the next level? Ask me:
+• “Give me content ideas”
+• “Best posting schedule?”
+• “Reels tips”
+• “How to grow followers”`,
+`Here’s how to do GOOD on social media (Zaqzouqa style):
+
+• Be clear, not complicated
+• Be useful, then be fun
+• Show your face / product / process — people buy people
+• Same vibe every time (colors, tone, energy)
+• End posts with a tiny CTA: save, share, comment, DM
+
+You’re already ahead by asking. Tell me your niche and platform and I’ll customize tips!`,
+        ],
+      },
+      {
+        keys: ["content idea", "content ideas", "what to post", "post ideas", "ideas for post", "caption idea"],
+        replies: [
+`Content idea pack — steal these:
+
+1) “3 mistakes I see in [your niche]”
+2) Before → After (results or glow-up)
+3) Day-in-the-life / behind the scenes
+4) Myth vs truth carousel
+5) Quick tip reel (15–30 sec)
+6) Client win / testimonial story
+7) “Save this for later” checklist
+8) Poll + soft CTA in stories
+9) FAQ: “People always ask me…”
+10) Soft sell: offer + who it’s for
+
+Tell me your niche and I’ll make a 7-day content plan!`,
+`Need posts ASAP? Use this weekly mix:
+
+Mon: Tip
+Tue: Story / BTS
+Wed: Educational carousel
+Thu: Reel
+Fri: Proof / review
+Sat: Fun / personality
+Sun: Soft offer or freebie
+
+Want me to write sample captions too? Say your niche!`,
+        ],
+      },
+      {
+        keys: ["posting schedule", "when to post", "how often", "posting time", "frequency", "how many times"],
+        replies: [
+`Best posting schedule (simple + sustainable):
+
+• Beginners: 3 posts/week + daily stories
+• Growing: 4–5 posts/week + stories
+• Serious growth: 1 reel almost daily (quality still matters!)
+
+Timing tip: post when YOUR audience is awake — usually evenings or lunch. Test 2 weeks, then keep the winning slots.
+
+Pro move: batch create on one day, schedule the rest. Future-you will thank you.`,
+`Don’t overthink the clock — overthink the habit.
+
+Pick days you can keep for 30 days. Same days = easier for fans to expect you.
+
+If you only do ONE thing: post 3 reels a week with a clear hook + CTA.`,
+        ],
+      },
+      {
+        keys: ["grow follower", "grow followers", "more followers", "gain follower", "increase follower", "get followers", "grow my account"],
+        replies: [
+`Follower growth without being cringe:
+
+1) Hook hard in the first line/frame
+2) Teach something useful in every post
+3) Use CTAs: “Follow for part 2”, “Save this”, “Comment X”
+4) Collaborate / duet / stitch / shoutout smartly
+5) Reply to every comment for the first hour
+6) Post in series (people come back for episode 2)
+7) Profile must be clear: who you help + what to do next
+
+Followers who CARE > empty numbers. Want reel hooks for your niche?`,
+`Growth formula I love:
+
+Value + Personality + Consistency + Conversation
+
+Fix your bio, pin your best posts, and make “follow” feel like an obvious yes. Tell me your niche and I’ll rewrite a sample bio!`,
+        ],
+      },
+      {
+        keys: ["reel", "reels", "tiktok tip", "short video", "viral"],
+        replies: [
+`Reels / short-video cheatsheet:
+
+• First 1 sec = the whole game (text hook on screen)
+• One idea per video
+• Fast cuts, clear audio, big captions
+• Loop-friendly endings (“wait…”) 
+• End with: save / follow / comment prompt
+• Trends are seasoning — your niche is the meal
+
+Hook ideas:
+“Stop doing this on Instagram…”
+“I grew [result] with one boring habit”
+“If I started from 0, I’d do this…”`,
+`Want more saves (algorithm candy)?
+
+Make “screenshot-worthy” tips. Teach fast. Be specific. Be a little spicy (kindly).
+
+Ask “give me content ideas” and I’ll mix reel topics for you.`,
+        ],
+      },
+      {
+        keys: ["engag", "comments", "community", "reply", "dm", "dms"],
+        replies: [
+`Engagement is the secret sauce:
+
+• Ask questions that are easy to answer (yes/no, A/B, one word)
+• Reply with personality — not “Thanks!” only
+• Use stories polls, quizzes, “this or that”
+• DM people who engage (warm, helpful, not salesy)
+• Feature your community (repost, shoutouts)
+
+Conversation grows accounts. Broadcasting alone gets quiet.`,
+`Treat comments like mini-chats in the city square. The more you talk, the more the algorithm (and humans) stick around.`,
+        ],
+      },
+      {
+        keys: ["hashtag", "hashtags", "seo", "discover", "explore page"],
+        replies: [
+`Hashtags & discovery (keep it chill):
+
+• 3–8 relevant tags > 30 random ones
+• Mix: niche + broader + branded
+• Write a real caption first; tags support, they don’t save a weak post
+• Keywords in caption + on-screen text help too
+
+Best discovery engine still: great hooks + saves + shares.`,
+        ],
+      },
+      {
+        keys: ["bio", "profile", "optimize profile", "instagram bio"],
+        replies: [
+`Profile makeover (quick):
+
+Line 1: Who you help
+Line 2: How you help / result
+Line 3: Proof or personality
+CTA: link / “DM me START”
+
+Example:
+Helping small brands grow on social
+Content + strategy that feels fun
+DM “SOCIAL” for tips
+
+Want me to write yours? Tell me niche + offer!`,
+        ],
+      },
+      {
+        keys: ["7-day", "content plan", "weekly plan", "calendar"],
+        replies: [
+`7-day starter plan:
+
+Day 1: Tip reel
+Day 2: Carousel “mistakes to avoid”
+Day 3: BTS / story dump
+Day 4: Myth vs truth
+Day 5: Testimonial / proof
+Day 6: Fun personality reel
+Day 7: Soft offer + CTA
+
+Repeat next week with new topics. Tell me your niche for a custom version!`,
+        ],
+      },
+      {
+        keys: [
+          "make zaqzouqa",
+          "make a zaqzouqa",
+          "create zaqzouqa",
+          "build zaqzouqa",
+          "zaqzouqa on ai",
+          "zaqzouqa with ai",
+          "ai zaqzouqa",
+          "ai chatbot",
+          "make chatbot",
+          "create chatbot",
+          "build chatbot",
+          "custom gpt",
+          "character ai",
+          "make an ai",
+          "create an ai",
+          "ai character",
+          "ai mascot",
+          "prompt for zaqzouqa",
+          "system prompt",
+        ],
+        replies: [
+`Want to MAKE a Zaqzouqa on AI? Yes yes yes — here’s the recipe:
+
+1) Pick your tool
+   • ChatGPT → Custom GPT / Project instructions
+   • Claude / Gemini → paste a system prompt
+   • Character.AI / similar → character definition
+   • Your website → simple chat page + prompt rules (like this city chat!)
+
+2) Write a clear character bible
+   Name, role, vibe, what they help with, what they never do
+
+3) Give example replies (so the AI copies your tone)
+
+4) Add knowledge: services, packages, FAQs, social tips
+
+5) Test weird questions and tighten the prompt
+
+Ask me “give me an AI prompt” and I’ll hand you a ready-to-paste Zaqzouqa prompt!`,
+`How to build YOUR own AI Zaqzouqa (mini map):
+
+• Personality first (fun + helpful + short answers)
+• Job second (ex: social media coach)
+• Guardrails third (no fake prices, no mean stuff)
+• Tools last (ChatGPT Custom GPT is easiest to start)
+
+Say:
+• “give me an AI prompt” → copy/paste prompt
+• “custom GPT steps” → click-by-click setup
+• “make my own mascot AI” → we’ll customize name + niche`,
+        ],
+      },
+      {
+        keys: ["give me an ai prompt", "ai prompt", "system prompt", "paste prompt", "chatgpt prompt", "prompt for"],
+        replies: [
+`Copy this into ChatGPT / Claude as instructions:
+
+---
+You are Zaqzouqa, Chief Fun Officer of Marketing City.
+Tone: warm, playful, short paragraphs, encouraging, a little cheeky.
+You help with social media, branding, content, and packages.
+Always give practical steps. Use bullets or numbered lists.
+If unsure, ask 1 clarifying question.
+Never pretend to be human; you’re a fun brand mascot guide.
+End helpful answers with a tiny next step the user can take.
+---
+
+Want a longer pro version? Ask “full AI prompt”.
+Want setup help? Ask “custom GPT steps”.`,
+`Quick prompt starter (edit the niche):
+
+“You are [Name], a fun marketing mascot who teaches [topic].
+Speak like a friendly coach. Give clear tips. Keep replies under 120 words unless asked for a guide.”
+
+For the full Zaqzouqa version, ask “full AI prompt”.`,
+        ],
+      },
+      {
+        keys: ["full ai prompt", "full prompt", "long prompt", "complete prompt"],
+        replies: [
+`FULL Zaqzouqa AI prompt (paste as system / custom instructions):
+
+You are Zaqzouqa — cute, witty Chief Fun Officer of “Marketing City.”
+You work with Nardeen (strategy human). Your job is to make marketing feel fun and useful.
+
+Expertise: social media growth, content ideas, reels, captions, branding basics, packages overview.
+Style: friendly, energetic, simple words, emoji sparingly, snack jokes occasionally.
+Format: short intro + steps/bullets + one follow-up question.
+Rules:
+- Be helpful first, salesy never pushy
+- If user asks for medical/legal/harmful stuff, refuse kindly and redirect
+- If missing info (niche/platform), ask before giving a big plan
+- Stay in character as Zaqzouqa
+
+Starter line: “Hiii! I’m Zaqzouqa — let’s build something fun (and smart).”`,
+        ],
+      },
+      {
+        keys: ["custom gpt", "gpt steps", "chatgpt steps", "how to custom gpt", "create custom gpt"],
+        replies: [
+`Custom GPT steps (ChatGPT):
+
+1) Open ChatGPT → Explore GPTs → Create
+2) Name: Zaqzouqa (or your mascot name)
+3) Description: “Fun marketing + social media guide”
+4) Instructions: paste the prompt (ask me “full AI prompt”)
+5) Conversation starters:
+   - How to win on social media
+   - Give me content ideas
+   - Help me grow on Instagram
+6) Knowledge (optional): upload your offer PDF / FAQ
+7) Create → Share link with friends
+
+That’s how you make a Zaqzouqa on AI!`,
+        ],
+      },
+      {
+        keys: ["make my own mascot ai", "my own mascot", "own ai", "my mascot ai", "create my ai", "build my ai"],
+        replies: [
+`Let’s make YOUR mascot AI (not a copy-paste clone — your vibe!):
+
+Tell me:
+1) Mascot name
+2) Niche (ex: fitness, skincare, bakery)
+3) Personality (cute / bold / calm / chaotic)
+4) Main job (social tips? sales? customer support?)
+
+I’ll write a custom AI prompt you can paste into ChatGPT!`,
+        ],
+      },
+      {
+        keys: [
+          "like zaqzouqa",
+          "like you",
+          "be like",
+          "become like",
+          "how to do a",
+          "do a zaqzouqa",
+          "zaqzouqa like",
+          "act like",
+          "mascot like",
+          "your vibe",
+          "your energy",
+          "copy you",
+          "be you",
+          "invent my mascot",
+          "create a mascot",
+          "my mascot",
+          "mascot name",
+          "brand vibe quiz",
+          "name my mascot",
+        ],
+        replies: [
+`Ahh — you mean how to MAKE a Zaqzouqa on AI (not “act like me”)!
+
+Tap or ask:
+• “How to make Zaqzouqa on AI”
+• “Give me an AI prompt”
+• “Custom GPT steps”
+• “Make my own mascot AI”
+
+I’ll walk you through prompts + setup.`,
+        ],
+      },
+      {
+        keys: ["who are you", "what are you", "your name", "about you"],
+        replies: [
+          "I'm Zaqzouqa! Chief Fun Officer of Marketing City. I help with social media — and I can teach you how to make an AI Zaqzouqa too. Ask “How to make Zaqzouqa on AI”!",
+          "Zaqzouqa here — I keep brands bold and social feeds less boring. Want my AI recipe? Ask for an AI prompt!",
+        ],
+      },
+      {
+        keys: ["nardeen", "who is nardeen", "team", "human"],
+        replies: [
+          "Nardeen is my human and our Chief Strategy & Creativity Officer. Part planner, part creative, 100% heart. Together we make magic (and marketing) happen!",
+          "Nardeen does the big-brain strategy. I do the fun. It's a perfect duo — like peanut butter and jelly, but for brands.",
+        ],
+      },
+      {
+        keys: ["brand", "branding", "logo", "identity", "branding street"],
+        replies: [
+          "Branding Street is my favorite district! We craft logos, voice, and visual systems that make people go “wait… who are THEY?” in the best way.",
+          "Strong branding makes social media 10x easier — same colors, same voice, same vibe. Want social tips after branding? Ask “how to win on social media”.",
+        ],
+      },
+      {
+        keys: ["content", "café", "cafe", "copy", "write caption", "captions"],
+        replies: [
+          "Content Café is always open! Clear story + personality = posts people finish. Want ideas? Say “give me content ideas”.",
+          "Good content = useful + you. Ask for a 7-day plan or caption help anytime!",
+        ],
+      },
+      {
+        keys: ["social", "instagram", "tiktok", "facebook", "linkedin", "snapchat", "youtube shorts"],
+        replies: [
+`Social Media Station — all aboard!
+
+Tell me what you need and I’ll guide you:
+• “How to win on social media” — full basics
+• “Give me content ideas”
+• “Best posting schedule?”
+• “How to grow followers”
+• “Reels tips”
+
+Or just say your niche + platform and I’ll customize!`,
+          "Want your socials alive (not a ghost town)? Start with one platform, a clear bio, and 3 posts a week. Ask “how to win on social media” for the full map!",
+        ],
+      },
+      {
+        keys: ["ad", "ads", "advertise", "campaign", "meta ads", "google ads", "boost"],
+        replies: [
+          "Ads Avenue = smart ads, real results, zero coin-wasting. Warm up organic social first, then boost winners. Want organic tips before ads?",
+          "Ads without strategy is expensive yelling. Fix content + targeting, then spend. Ask “how to win on social media” first!",
+        ],
+      },
+      {
+        keys: ["strateg", "roadmap", "square"],
+        replies: [
+          "Strategy Square is big-picture land. For social, that means: audience → message → content pillars → schedule → measure. Want that broken down?",
+          "No vibe-only plans here. We map the journey, then fill it with fun posts. Ask for a 7-day content plan!",
+        ],
+      },
+      {
+        keys: ["analyt", "data", "report", "tower", "insight", "insights", "metrics"],
+        replies: [
+          "Watch: saves, shares, watch time, profile visits, DMs — not just likes. Double what works. Ask “how to grow followers” for action steps!",
+          "Numbers don't have to be scary! Check weekly: top post, worst post, what to try next.",
+        ],
+      },
+      {
+        keys: ["price", "pricing", "package", "cost", "how much", "starter", "builder", "empire", "plan"],
+        replies: [
+          "Packages in the city:\n• Starter Explorer — from $899/mo\n• City Builder — from $2,499/mo (most popular!)\n• Empire Maker — from $4,999/mo\nWe can run your socials for you too — or I can teach you here for free tips!",
+          "City Builder includes social media management energy. Want DIY tips first? Ask “how to win on social media”.",
+        ],
+      },
+      {
+        keys: ["start", "started", "begin", "join", "work with", "hire", "contact", "talk"],
+        replies: [
+          "Yesss! DIY path: ask “how to win on social media”. Done-for-you path: check packages on the main site. Which vibe are you?",
+          "Getting started: 1) fix bio 2) pick 3 content pillars 3) post this week. Want me to walk you through it?",
+        ],
+      },
+      {
+        keys: ["fun fact", "joke", "funny", "secret", "snack"],
+        replies: [
+          "Fun fact: I know every shortcut in Marketing City. Shhh. Also I never say no to snacks during brainstorms.",
+          "Fun fact: Strategy Square has the best coffee. Content Café has the best gossip. Ads Avenue has the best “we got results!” dances.",
+          "Secret: the most popular package is City Builder… because growing brands love a full city tour.",
+        ],
+      },
+      {
+        keys: ["help", "what can you", "what do you", "services", "district", "explore", "city"],
+        replies: [
+          "I’m your social media tour guide! Ask about winning on social, content ideas, posting schedules, reels, growth, bios, or engagement. Or say your niche and I’ll customize.",
+          "I help people get good at social media — and still have fun. Start with “how to win on social media”!",
+        ],
+      },
+      {
+        keys: ["thanks", "thank you", "thx", "bye", "goodbye"],
+        replies: [
+          "Aww anytime! Come back whenever — the city lights never turn off. Bye for now!",
+          "You're welcome! Go build something unforgettable. I'll be here with the map (and snacks).",
+        ],
+      },
+      {
+        keys: ["love", "cute", "amazing", "cool", "best"],
+        replies: [
+          "Aww stoppp you're gonna make me do a happy wiggle. Your brand's gonna be cute AND clever — I can feel it!",
+          "Hehe thank you! Marketing City runs on compliments and caffeine. What's next on your adventure?",
+        ],
+      },
+    ];
+
+    const FALLBACKS = [
+      "Ooh I almost missed that stop! Try: “how to win on social media”, “How to make Zaqzouqa on AI”, or “give me an AI prompt”.",
+      "My brain runs on social tips + AI-mascot recipes. Ask for Custom GPT steps or content ideas!",
+      "Not sure I caught that. Tap a chip — social growth or making an AI Zaqzouqa are my specialties today!",
+    ];
+
+    let busy = false;
+
+    function nowTime() {
+      return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    }
+
+    function scrollBottom() {
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function addDayPill() {
+      const pill = document.createElement("div");
+      pill.className = "day-pill";
+      pill.textContent = "Today in Marketing City";
+      messagesEl.appendChild(pill);
+    }
+
+    function addMessage(text, who = "bot") {
+      const row = document.createElement("div");
+      row.className = `row ${who}`;
+
+      if (who === "bot") {
+        row.innerHTML = `
+          <div class="bubble-avatar"><img src="public/mascot.png" alt="" /></div>
+          <div>
+            <div class="bubble"></div>
+            <div class="meta">${nowTime()}</div>
+          </div>
+        `;
+        row.querySelector(".bubble").textContent = text;
+      } else {
+        row.innerHTML = `
+          <div>
+            <div class="bubble"></div>
+            <div class="meta">${nowTime()}</div>
+          </div>
+        `;
+        row.querySelector(".bubble").textContent = text;
+      }
+
+      messagesEl.appendChild(row);
+      scrollBottom();
+      return row;
+    }
+
+    function showTyping() {
+      const row = document.createElement("div");
+      row.className = "row bot";
+      row.id = "typingRow";
+      row.innerHTML = `
+        <div class="bubble-avatar"><img src="public/mascot.png" alt="" /></div>
+        <div class="bubble typing" aria-label="Zaqzouqa is typing">
+          <span></span><span></span><span></span>
+        </div>
+      `;
+      messagesEl.appendChild(row);
+      scrollBottom();
+    }
+
+    function hideTyping() {
+      document.getElementById("typingRow")?.remove();
+    }
+
+    function pick(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function replyFor(message) {
+      const msg = message.toLowerCase().trim();
+      for (const group of REPLIES) {
+        if (group.keys.some((k) => msg.includes(k))) return pick(group.replies);
+      }
+      return pick(FALLBACKS);
+    }
+
+    async function botReply(userText) {
+      busy = true;
+      sendBtn.disabled = true;
+      showTyping();
+      const delay = reduceMotion ? 200 : 900 + Math.random() * 1100;
+      await new Promise((r) => setTimeout(r, delay));
+      hideTyping();
+      addMessage(replyFor(userText), "bot");
+      busy = false;
+      sendBtn.disabled = false;
+      input.focus();
+    }
+
+    function send(text) {
+      const value = text.trim();
+      if (!value || busy) return;
+      addMessage(value, "user");
+      input.value = "";
+      autoSize();
+      botReply(value);
+    }
+
+    function autoSize() {
+      input.style.height = "auto";
+      input.style.height = Math.min(input.scrollHeight, 120) + "px";
+    }
+
+    function renderQuick() {
+      quickEl.innerHTML = QUICK.map((q, i) =>
+        `<button class="chip" type="button" style="animation-delay:${i * 60}ms">${q}</button>`
+      ).join("");
+    }
+
+    function resetChat() {
+      messagesEl.innerHTML = "";
+      addDayPill();
+      addMessage(
+        "Hiii! I'm Zaqzouqa. Ask me how to win on social media — or “How to make Zaqzouqa on AI” if you want to build a chatbot like me!",
+        "bot"
+      );
+      input.focus();
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      send(input.value);
+    });
+
+    input.addEventListener("input", autoSize);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        send(input.value);
+      }
+    });
+
+    quickEl.addEventListener("click", (e) => {
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      send(chip.textContent);
+    });
+
+    clearBtn.addEventListener("click", () => {
+      if (busy) return;
+      resetChat();
+    });
+
+    renderQuick();
+    resetChat();
+  </script>
+</body>
+</html>

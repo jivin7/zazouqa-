@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#3a1220" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Explore the City — Zaqzouqa Marketing City</title>
+  <meta name="description" content="Six districts, one empire. Branding, content, social media, ads, strategy and analytics — explore every service in Marketing City." />
+  <meta property="og:title" content="Explore the City — Zaqzouqa Marketing City" />
+  <meta property="og:description" content="Pick a district and let's build something amazing together." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="city-map.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body data-page="explore">
+  <div id="page">
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <header class="header" id="header">
+      <div class="container header-inner">
+        <a href="index.html" class="logo">
+          <strong>Zaqzouqa</strong>
+          <span>Marketing City</span>
+        </a>
+
+        <nav class="nav-desktop" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="explore.html" class="is-active" aria-current="page">Explore the City</a>
+          <a href="explore.html">Services</a>
+          <a href="packages.html">Packages</a>
+          <a href="stories.html">Success Stories</a>
+          <a href="resources.html">Resources</a>
+          <a href="aboutus.html">About Us</a>
+        </nav>
+
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <a href="chat.html" class="btn btn-primary header-cta">
+            Let's Talk
+            <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          </a>
+          <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">
+            <svg class="icon icon-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+            <svg class="icon icon-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-nav" id="mobileNav">
+        <div class="container">
+          <ul>
+            <li><a href="index.html" style="transition-delay:80ms">Home</a></li>
+            <li><a href="explore.html" class="is-active" aria-current="page" style="transition-delay:120ms">Explore the City</a></li>
+            <li><a href="explore.html" style="transition-delay:160ms">Services</a></li>
+            <li><a href="packages.html" style="transition-delay:200ms">Packages</a></li>
+            <li><a href="stories.html" style="transition-delay:240ms">Success Stories</a></li>
+            <li><a href="resources.html" style="transition-delay:280ms">Resources</a></li>
+            <li><a href="aboutus.html" style="transition-delay:320ms">About Us</a></li>
+            <li style="margin-top:0.5rem">
+              <a href="chat.html" class="btn btn-primary" style="width:100%;transition-delay:360ms">Let's Talk</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow">The city map</p>
+          <h1>Explore the City</h1>
+          <p>Six districts, one empire. Every neighbourhood does one job brilliantly — together they build your brand. Tap a district to unlock what happens inside.</p>
+                  <div class="page-hero-visual reveal reveal-scale">
+            <img src="city-map.png" alt="Illustrated map of Marketing City" width="900" height="620" />
+          </div>
+          <div class="img-chip reveal reveal-up">
+            <img src="zaq-point.png" alt="Zaqzouqa pointing" width="80" height="80" />
+            <div>
+              <strong>Tip from Zaqzouqa</strong>
+              <span>Tap any district below — I will cheer when you unlock one.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DISTRICTS -->
+      <section class="section section-card" id="explore">
+        <div class="container">
+          <div class="section-head reveal reveal-blur">
+            <h2>Pick Your District</h2>
+            <p>Pick a district and let's build something amazing together!</p>
+          </div>
+          <div class="districts" id="districts"></div>
+          <div class="district-detail" id="districtDetail" hidden></div>
+        </div>
+      </section>
+
+      <!-- STROLL -->
+      <section class="section">
+        <div class="container">
+          <div class="stroll-box">
+            <div class="reveal reveal-left">
+              <h2>
+                Take a stroll through Marketing City
+                <svg viewBox="0 0 24 24" class="animate-heartbeat"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+              </h2>
+              <p class="copy">Every district has a purpose. Together, they build your brand empire.</p>
+              <a href="packages.html" class="btn btn-primary">
+                See the Packages
+                <span class="btn-icon"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+              </a>
+            </div>
+            <div class="reveal reveal-right" style="position:relative">
+              <div class="map-frame">
+                <div class="map-art">
+                  <img src="city-map.png" alt="Illustrated map of Marketing City showing every district" width="900" height="620" />
+                </div>
+              </div>
+              <aside class="fun-fact animate-float-slow">
+                <strong>Fun fact!</strong>
+                <p>Zaqzouqa knows every shortcut in the city. Shhh!</p>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta">
+        <div class="cta-glow" aria-hidden="true"></div>
+        <div class="container cta-grid">
+          <div class="cta-copy reveal reveal-left">
+            <h2>Found your district?</h2>
+            <p>Pick a package and we'll start building your corner of the city this week.</p>
+            <a href="packages.html" class="btn btn-light">
+              See the Packages
+              <span class="btn-icon" style="background:var(--accent);color:var(--accent-foreground)">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </span>
+            </a>
+          </div>
+          <div class="cta-art">
+            <img class="highfive" src="cta-highfive.png" alt="Nardeen and Zaqzouqa celebrating with a high five" width="520" height="420" />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="reveal reveal-up">
+            <a href="index.html" class="logo">
+              <strong>Zaqzouqa</strong>
+              <span>Marketing City</span>
+            </a>
+            <p class="footer-tag">Smart marketing. Big dreams. Made fun.</p>
+            <div class="socials">
+              <a href="#" aria-label="Camera"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg></a>
+              <a href="#" aria-label="Briefcase"><svg class="icon icon-sm" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></a>
+              <a href="#" aria-label="Play"><svg class="icon icon-sm" viewBox="0 0 24 24"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg></a>
+            </div>
+          </div>
+
+          <div class="footer-cols">
+            <div class="reveal reveal-up">
+              <h3>Explore</h3>
+              <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html">Explore the City</a></li>
+                <li><a href="explore.html">Services</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="stories.html">Success Stories</a></li>
+              </ul>
+            </div>
+            <div class="reveal reveal-up" style="transition-delay:80ms">
+              <h3>Resources</h3>
+              <ul>
+                <li><a href="resources.html#blog">Blog</a></li>
+                <li><a href="resources.html#guides">Free Guides</a></li>
+                <li><a href="resources.html#templates">Templates</a></li>
+                <li><a href="resources.html#faqs">FAQs</a></li>
+              </ul>
+            </div>
+            <div class="reveal reveal-up" style="transition-delay:160ms">
+              <h3>Company</h3>
+              <ul>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="aboutus.html#process">Our Process</a></li>
+                <li><a href="aboutus.html#careers">Careers</a></li>
+                <li><a href="chat.html">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="newsletter reveal reveal-right">
+            <h3>Stay in the Loop!</h3>
+            <p>Fun tips, clever ideas, and city updates.</p>
+            <form class="newsletter-form" id="newsletterForm">
+              <label class="sr-only" for="email">Email address</label>
+              <input id="email" type="email" required placeholder="Your email here..." />
+              <button type="submit" aria-label="Subscribe">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+              </button>
+            </form>
+            <p class="newsletter-ok" id="newsletterOk">You're on the list — welcome to the city!</p>
+          </div>
+        </div>
+        <p class="copyright">Â© <span id="year"></span> Zaqzouqa Marketing City. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <div class="zaq-guide" id="zaqGuide" aria-live="polite">
+      <div class="zaq-bubble" id="zaqBubble">
+        <strong id="zaqBubbleTitle">Zaqzouqa</strong>
+        <p id="zaqBubbleText">Click a district card to unlock the details!</p>
+        <div class="zaq-bubble-actions">
+          <a href="chat.html">Chat</a>
+          <button type="button" id="zaqNextTip">Next tip</button>
+          <button type="button" id="zaqHideBubble">Hide</button>
+        </div>
+      </div>
+      <div class="zaq-body">
+        <button class="zaq-char" id="zaqCharBtn" type="button" aria-label="Talk to Zaqzouqa guide">
+          <img id="zaqExprImg" src="zaq-point.png" alt="Zaqzouqa" width="140" height="160" />
+          <span class="live" aria-hidden="true"></span>
+        </button>
+        <span class="zaq-label" aria-hidden="true">Need help?</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/site.js" defer></script>
+</body>
+</html>

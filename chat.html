@@ -8,11 +8,11 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <title>Chat with Zaqzouqa — Marketing City</title>
   <meta name="description" content="Chat with Zaqzouqa about social media, branding, AI mascots & more." />
-  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="/apple-icon.png" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
       color-scheme: light;
@@ -27,8 +27,8 @@
       --accent-fg: oklch(0.98 0.01 80);
       --border: oklch(0.9 0.03 40);
       --gold: oklch(0.78 0.13 70);
-      --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
-      --font-display: "Baloo 2", ui-sans-serif, system-ui, sans-serif;
+      --font-sans: "Alexandria", ui-sans-serif, system-ui, sans-serif;
+      --font-display: "Alexandria", ui-sans-serif, system-ui, sans-serif;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -66,11 +66,52 @@
       max-width: 1100px;
       margin: 0 auto;
       display: grid;
-      grid-template-rows: auto 1fr;
+      grid-template-rows: auto auto 1fr;
       padding: 0.5rem;
       gap: 0.5rem;
       min-height: 0;
       width: 100%;
+    }
+
+    /* Cross-page nav */
+    .chat-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding: 0.15rem 0.1rem;
+      min-width: 0;
+    }
+
+    .chat-nav::-webkit-scrollbar { display: none; }
+
+    .chat-nav a {
+      flex-shrink: 0;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid color-mix(in oklch, var(--border) 85%, transparent);
+      background: color-mix(in oklch, var(--card) 80%, transparent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: color-mix(in oklch, var(--primary) 82%, transparent);
+      white-space: nowrap;
+      transition: transform 0.25s var(--ease), background 0.25s, color 0.25s, border-color 0.25s;
+    }
+
+    .chat-nav a:hover {
+      transform: translateY(-2px);
+      background: var(--secondary);
+      color: var(--accent);
+      border-color: color-mix(in oklch, var(--accent) 35%, transparent);
+    }
+
+    .chat-nav a.is-active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--primary-foreground);
     }
 
     /* Top bar */
@@ -570,6 +611,58 @@
       .composer-wrap { padding: 0.9rem 1.1rem 1.05rem; }
     }
 
+    
+    /* PHONE CHAT SHELL */
+    html, body {
+      background: oklch(0.9 0.02 40) !important;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+    }
+    .app {
+      width: 100%;
+      max-width: 430px;
+      margin: 0 auto;
+      min-height: 100dvh;
+      min-height: 100svh;
+      background: var(--background);
+      box-shadow: 0 0 0 1px color-mix(in oklch, var(--border) 80%, transparent),
+                  0 24px 60px -28px color-mix(in oklch, var(--primary) 35%, transparent);
+      border-radius: 0;
+      padding: 0.55rem !important;
+      gap: 0.55rem !important;
+    }
+    .shell { grid-template-columns: 1fr !important; }
+    .side { display: none !important; }
+    .chat-nav {
+      display: flex !important;
+      gap: 0.4rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.15rem;
+      scrollbar-width: none;
+    }
+    .chat-nav::-webkit-scrollbar { display: none; }
+    .chat-nav a {
+      flex-shrink: 0;
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      font-size: 0.78rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .chat-nav a.is-active {
+      background: var(--primary);
+      color: var(--primary-fg);
+      border-color: var(--primary);
+    }
+    .composer textarea { font-size: 16px !important; }
+    .send, .icon-btn { min-width: 44px; min-height: 44px; }
+    .bubble { font-size: 0.92rem; }
+    .row { max-width: 96% !important; }
     @media (prefers-reduced-motion: reduce) {
       .topbar, .shell, .side, .chat-panel, .row, .chip, .brand-avatar, .side-mascot img,
       .online-dot, .typing span { animation: none !important; }
@@ -579,16 +672,16 @@
 <body>
   <div class="app">
     <header class="topbar">
-      <div class="brand">
+      <a class="brand" href="index.html" aria-label="Zaqzouqa Marketing City home">
         <div class="brand-avatar">
-          <img src="/mascot.png" alt="Zaqzouqa" />
+          <img src="mascot.png" alt="Zaqzouqa" />
           <span class="online-dot" aria-hidden="true"></span>
         </div>
         <div class="brand-text">
           <strong>Zaqzouqa</strong>
-          <span><span class="status">● Online</span> · Chief Fun Officer</span>
+          <span><span class="status">â— Online</span> Â· Chief Fun Officer</span>
         </div>
-      </div>
+      </a>
       <div class="top-actions">
         <button class="icon-btn" id="clearChat" type="button" title="New chat" aria-label="Start a new chat">
           <svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
@@ -600,10 +693,21 @@
       </div>
     </header>
 
+    <nav class="chat-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore the City</a>
+      <a href="explore.html">Services</a>
+      <a href="packages.html">Packages</a>
+      <a href="stories.html">Success Stories</a>
+      <a href="resources.html">Resources</a>
+      <a href="aboutus.html">About Us</a>
+      <a href="chat.html" class="is-active" aria-current="page">Let's Talk</a>
+    </nav>
+
     <div class="shell">
       <aside class="side">
         <div class="side-mascot">
-          <img src="/mascot.png" alt="Zaqzouqa mascot" />
+          <img src="mascot.png" alt="Zaqzouqa mascot" />
         </div>
         <h2>Hey, I'm Zaqzouqa!</h2>
         <p>
@@ -631,7 +735,7 @@
               <svg viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
             </button>
           </form>
-          <p class="hint">Built for social media tips · Zaqzouqa style</p>
+          <p class="hint">Built for social media tips Â· Zaqzouqa style</p>
         </div>
       </section>
     </div>
@@ -661,8 +765,8 @@
         keys: ["hi", "hello", "hey", "yo", "salam", "hola"],
         replies: [
           "Hiii! Welcome to Social Media Station! I'm Zaqzouqa. Want to post better, grow faster, or finally feel confident online? Ask away — or tap a chip below!",
-          "Heyyy! Most people visit me to crush social media (smart move). Tell me your platform — Instagram, TikTok, Facebook — or say “how to win on social media”!",
-          "Hello hello! Ready for social tips that actually feel doable? Ask about content ideas, reels, growth, or engagement. Snacks optional… but recommended.",
+          "Heyyy! Most people visit me to crush social media (smart move). Tell me your platform — Instagram, TikTok, Facebook — or say "how to win on social media"!",
+          "Hello hello! Ready for social tips that actually feel doable? Ask about content ideas, reels, growth, or engagement. Snacks optional... but recommended.",
         ],
       },
       {
@@ -684,28 +788,28 @@
         replies: [
 `Alright — Social Media Station masterclass (tiny version):
 
-1) Pick ONE main platform first (don’t drown posting everywhere).
+1) Pick ONE main platform first (don't drown posting everywhere).
 2) Know your person: who are you talking to, and what do they need?
-3) Post with a pattern: Teach · Show · Sell · Connect (repeat).
-4) Hooks in 1 second: question, bold claim, or “wait for it…” energy.
+3) Post with a pattern: Teach Â· Show Â· Sell Â· Connect (repeat).
+4) Hooks in 1 second: question, bold claim, or "wait for it..." energy.
 5) Talk WITH people — reply to comments like a friend, not a robot.
-6) Consistency > virality. 3–5 good posts/week beats 1 random masterpiece.
+6) Consistency > virality. 3â€“5 good posts/week beats 1 random masterpiece.
 7) Track what worked. Double down. Drop what flopped (no hard feelings).
 
 Want the next level? Ask me:
-• “Give me content ideas”
-• “Best posting schedule?”
-• “Reels tips”
-• “How to grow followers”`,
-`Here’s how to do GOOD on social media (Zaqzouqa style):
+â€¢ "Give me content ideas"
+â€¢ "Best posting schedule?"
+â€¢ "Reels tips"
+â€¢ "How to grow followers"`,
+`Here's how to do GOOD on social media (Zaqzouqa style):
 
-• Be clear, not complicated
-• Be useful, then be fun
-• Show your face / product / process — people buy people
-• Same vibe every time (colors, tone, energy)
-• End posts with a tiny CTA: save, share, comment, DM
+â€¢ Be clear, not complicated
+â€¢ Be useful, then be fun
+â€¢ Show your face / product / process — people buy people
+â€¢ Same vibe every time (colors, tone, energy)
+â€¢ End posts with a tiny CTA: save, share, comment, DM
 
-You’re already ahead by asking. Tell me your niche and platform and I’ll customize tips!`,
+You're already ahead by asking. Tell me your niche and platform and I'll customize tips!`,
         ],
       },
       {
@@ -713,18 +817,18 @@ You’re already ahead by asking. Tell me your niche and platform and I’ll cus
         replies: [
 `Content idea pack — steal these:
 
-1) “3 mistakes I see in [your niche]”
-2) Before → After (results or glow-up)
+1) "3 mistakes I see in [your niche]"
+2) Before â†’ After (results or glow-up)
 3) Day-in-the-life / behind the scenes
 4) Myth vs truth carousel
-5) Quick tip reel (15–30 sec)
+5) Quick tip reel (15â€“30 sec)
 6) Client win / testimonial story
-7) “Save this for later” checklist
+7) "Save this for later" checklist
 8) Poll + soft CTA in stories
-9) FAQ: “People always ask me…”
-10) Soft sell: offer + who it’s for
+9) FAQ: "People always ask me..."
+10) Soft sell: offer + who it's for
 
-Tell me your niche and I’ll make a 7-day content plan!`,
+Tell me your niche and I'll make a 7-day content plan!`,
 `Need posts ASAP? Use this weekly mix:
 
 Mon: Tip
@@ -743,14 +847,14 @@ Want me to write sample captions too? Say your niche!`,
         replies: [
 `Best posting schedule (simple + sustainable):
 
-• Beginners: 3 posts/week + daily stories
-• Growing: 4–5 posts/week + stories
-• Serious growth: 1 reel almost daily (quality still matters!)
+â€¢ Beginners: 3 posts/week + daily stories
+â€¢ Growing: 4â€“5 posts/week + stories
+â€¢ Serious growth: 1 reel almost daily (quality still matters!)
 
 Timing tip: post when YOUR audience is awake — usually evenings or lunch. Test 2 weeks, then keep the winning slots.
 
 Pro move: batch create on one day, schedule the rest. Future-you will thank you.`,
-`Don’t overthink the clock — overthink the habit.
+`Don't overthink the clock — overthink the habit.
 
 Pick days you can keep for 30 days. Same days = easier for fans to expect you.
 
@@ -764,7 +868,7 @@ If you only do ONE thing: post 3 reels a week with a clear hook + CTA.`,
 
 1) Hook hard in the first line/frame
 2) Teach something useful in every post
-3) Use CTAs: “Follow for part 2”, “Save this”, “Comment X”
+3) Use CTAs: "Follow for part 2", "Save this", "Comment X"
 4) Collaborate / duet / stitch / shoutout smartly
 5) Reply to every comment for the first hour
 6) Post in series (people come back for episode 2)
@@ -775,7 +879,7 @@ Followers who CARE > empty numbers. Want reel hooks for your niche?`,
 
 Value + Personality + Consistency + Conversation
 
-Fix your bio, pin your best posts, and make “follow” feel like an obvious yes. Tell me your niche and I’ll rewrite a sample bio!`,
+Fix your bio, pin your best posts, and make "follow" feel like an obvious yes. Tell me your niche and I'll rewrite a sample bio!`,
         ],
       },
       {
@@ -783,22 +887,22 @@ Fix your bio, pin your best posts, and make “follow” feel like an obvious ye
         replies: [
 `Reels / short-video cheatsheet:
 
-• First 1 sec = the whole game (text hook on screen)
-• One idea per video
-• Fast cuts, clear audio, big captions
-• Loop-friendly endings (“wait…”) 
-• End with: save / follow / comment prompt
-• Trends are seasoning — your niche is the meal
+â€¢ First 1 sec = the whole game (text hook on screen)
+â€¢ One idea per video
+â€¢ Fast cuts, clear audio, big captions
+â€¢ Loop-friendly endings ("wait...") 
+â€¢ End with: save / follow / comment prompt
+â€¢ Trends are seasoning — your niche is the meal
 
 Hook ideas:
-“Stop doing this on Instagram…”
-“I grew [result] with one boring habit”
-“If I started from 0, I’d do this…”`,
+"Stop doing this on Instagram..."
+"I grew [result] with one boring habit"
+"If I started from 0, I'd do this..."`,
 `Want more saves (algorithm candy)?
 
-Make “screenshot-worthy” tips. Teach fast. Be specific. Be a little spicy (kindly).
+Make "screenshot-worthy" tips. Teach fast. Be specific. Be a little spicy (kindly).
 
-Ask “give me content ideas” and I’ll mix reel topics for you.`,
+Ask "give me content ideas" and I'll mix reel topics for you.`,
         ],
       },
       {
@@ -806,11 +910,11 @@ Ask “give me content ideas” and I’ll mix reel topics for you.`,
         replies: [
 `Engagement is the secret sauce:
 
-• Ask questions that are easy to answer (yes/no, A/B, one word)
-• Reply with personality — not “Thanks!” only
-• Use stories polls, quizzes, “this or that”
-• DM people who engage (warm, helpful, not salesy)
-• Feature your community (repost, shoutouts)
+â€¢ Ask questions that are easy to answer (yes/no, A/B, one word)
+â€¢ Reply with personality — not "Thanks!" only
+â€¢ Use stories polls, quizzes, "this or that"
+â€¢ DM people who engage (warm, helpful, not salesy)
+â€¢ Feature your community (repost, shoutouts)
 
 Conversation grows accounts. Broadcasting alone gets quiet.`,
 `Treat comments like mini-chats in the city square. The more you talk, the more the algorithm (and humans) stick around.`,
@@ -821,10 +925,10 @@ Conversation grows accounts. Broadcasting alone gets quiet.`,
         replies: [
 `Hashtags & discovery (keep it chill):
 
-• 3–8 relevant tags > 30 random ones
-• Mix: niche + broader + branded
-• Write a real caption first; tags support, they don’t save a weak post
-• Keywords in caption + on-screen text help too
+â€¢ 3â€“8 relevant tags > 30 random ones
+â€¢ Mix: niche + broader + branded
+â€¢ Write a real caption first; tags support, they don't save a weak post
+â€¢ Keywords in caption + on-screen text help too
 
 Best discovery engine still: great hooks + saves + shares.`,
         ],
@@ -837,12 +941,12 @@ Best discovery engine still: great hooks + saves + shares.`,
 Line 1: Who you help
 Line 2: How you help / result
 Line 3: Proof or personality
-CTA: link / “DM me START”
+CTA: link / "DM me START"
 
 Example:
 Helping small brands grow on social
 Content + strategy that feels fun
-DM “SOCIAL” for tips
+DM "SOCIAL" for tips
 
 Want me to write yours? Tell me niche + offer!`,
         ],
@@ -853,7 +957,7 @@ Want me to write yours? Tell me niche + offer!`,
 `7-day starter plan:
 
 Day 1: Tip reel
-Day 2: Carousel “mistakes to avoid”
+Day 2: Carousel "mistakes to avoid"
 Day 3: BTS / story dump
 Day 4: Myth vs truth
 Day 5: Testimonial / proof
@@ -886,13 +990,13 @@ Repeat next week with new topics. Tell me your niche for a custom version!`,
           "system prompt",
         ],
         replies: [
-`Want to MAKE a Zaqzouqa on AI? Yes yes yes — here’s the recipe:
+`Want to MAKE a Zaqzouqa on AI? Yes yes yes — here's the recipe:
 
 1) Pick your tool
-   • ChatGPT → Custom GPT / Project instructions
-   • Claude / Gemini → paste a system prompt
-   • Character.AI / similar → character definition
-   • Your website → simple chat page + prompt rules (like this city chat!)
+   â€¢ ChatGPT â†’ Custom GPT / Project instructions
+   â€¢ Claude / Gemini â†’ paste a system prompt
+   â€¢ Character.AI / similar â†’ character definition
+   â€¢ Your website â†’ simple chat page + prompt rules (like this city chat!)
 
 2) Write a clear character bible
    Name, role, vibe, what they help with, what they never do
@@ -903,18 +1007,18 @@ Repeat next week with new topics. Tell me your niche for a custom version!`,
 
 5) Test weird questions and tighten the prompt
 
-Ask me “give me an AI prompt” and I’ll hand you a ready-to-paste Zaqzouqa prompt!`,
+Ask me "give me an AI prompt" and I'll hand you a ready-to-paste Zaqzouqa prompt!`,
 `How to build YOUR own AI Zaqzouqa (mini map):
 
-• Personality first (fun + helpful + short answers)
-• Job second (ex: social media coach)
-• Guardrails third (no fake prices, no mean stuff)
-• Tools last (ChatGPT Custom GPT is easiest to start)
+â€¢ Personality first (fun + helpful + short answers)
+â€¢ Job second (ex: social media coach)
+â€¢ Guardrails third (no fake prices, no mean stuff)
+â€¢ Tools last (ChatGPT Custom GPT is easiest to start)
 
 Say:
-• “give me an AI prompt” → copy/paste prompt
-• “custom GPT steps” → click-by-click setup
-• “make my own mascot AI” → we’ll customize name + niche`,
+â€¢ "give me an AI prompt" â†’ copy/paste prompt
+â€¢ "custom GPT steps" â†’ click-by-click setup
+â€¢ "make my own mascot AI" â†’ we'll customize name + niche`,
         ],
       },
       {
@@ -928,18 +1032,18 @@ Tone: warm, playful, short paragraphs, encouraging, a little cheeky.
 You help with social media, branding, content, and packages.
 Always give practical steps. Use bullets or numbered lists.
 If unsure, ask 1 clarifying question.
-Never pretend to be human; you’re a fun brand mascot guide.
+Never pretend to be human; you're a fun brand mascot guide.
 End helpful answers with a tiny next step the user can take.
 ---
 
-Want a longer pro version? Ask “full AI prompt”.
-Want setup help? Ask “custom GPT steps”.`,
+Want a longer pro version? Ask "full AI prompt".
+Want setup help? Ask "custom GPT steps".`,
 `Quick prompt starter (edit the niche):
 
-“You are [Name], a fun marketing mascot who teaches [topic].
-Speak like a friendly coach. Give clear tips. Keep replies under 120 words unless asked for a guide.”
+"You are [Name], a fun marketing mascot who teaches [topic].
+Speak like a friendly coach. Give clear tips. Keep replies under 120 words unless asked for a guide."
 
-For the full Zaqzouqa version, ask “full AI prompt”.`,
+For the full Zaqzouqa version, ask "full AI prompt".`,
         ],
       },
       {
@@ -947,7 +1051,7 @@ For the full Zaqzouqa version, ask “full AI prompt”.`,
         replies: [
 `FULL Zaqzouqa AI prompt (paste as system / custom instructions):
 
-You are Zaqzouqa — cute, witty Chief Fun Officer of “Marketing City.”
+You are Zaqzouqa — cute, witty Chief Fun Officer of "Marketing City."
 You work with Nardeen (strategy human). Your job is to make marketing feel fun and useful.
 
 Expertise: social media growth, content ideas, reels, captions, branding basics, packages overview.
@@ -959,7 +1063,7 @@ Rules:
 - If missing info (niche/platform), ask before giving a big plan
 - Stay in character as Zaqzouqa
 
-Starter line: “Hiii! I’m Zaqzouqa — let’s build something fun (and smart).”`,
+Starter line: "Hiii! I'm Zaqzouqa — let's build something fun (and smart)."`,
         ],
       },
       {
@@ -967,24 +1071,24 @@ Starter line: “Hiii! I’m Zaqzouqa — let’s build something fun (and smart
         replies: [
 `Custom GPT steps (ChatGPT):
 
-1) Open ChatGPT → Explore GPTs → Create
+1) Open ChatGPT â†’ Explore GPTs â†’ Create
 2) Name: Zaqzouqa (or your mascot name)
-3) Description: “Fun marketing + social media guide”
-4) Instructions: paste the prompt (ask me “full AI prompt”)
+3) Description: "Fun marketing + social media guide"
+4) Instructions: paste the prompt (ask me "full AI prompt")
 5) Conversation starters:
    - How to win on social media
    - Give me content ideas
    - Help me grow on Instagram
 6) Knowledge (optional): upload your offer PDF / FAQ
-7) Create → Share link with friends
+7) Create â†’ Share link with friends
 
-That’s how you make a Zaqzouqa on AI!`,
+That's how you make a Zaqzouqa on AI!`,
         ],
       },
       {
         keys: ["make my own mascot ai", "my own mascot", "own ai", "my mascot ai", "create my ai", "build my ai"],
         replies: [
-`Let’s make YOUR mascot AI (not a copy-paste clone — your vibe!):
+`Let's make YOUR mascot AI (not a copy-paste clone — your vibe!):
 
 Tell me:
 1) Mascot name
@@ -992,7 +1096,7 @@ Tell me:
 3) Personality (cute / bold / calm / chaotic)
 4) Main job (social tips? sales? customer support?)
 
-I’ll write a custom AI prompt you can paste into ChatGPT!`,
+I'll write a custom AI prompt you can paste into ChatGPT!`,
         ],
       },
       {
@@ -1018,21 +1122,21 @@ I’ll write a custom AI prompt you can paste into ChatGPT!`,
           "name my mascot",
         ],
         replies: [
-`Ahh — you mean how to MAKE a Zaqzouqa on AI (not “act like me”)!
+`Ahh — you mean how to MAKE a Zaqzouqa on AI (not "act like me")!
 
 Tap or ask:
-• “How to make Zaqzouqa on AI”
-• “Give me an AI prompt”
-• “Custom GPT steps”
-• “Make my own mascot AI”
+â€¢ "How to make Zaqzouqa on AI"
+â€¢ "Give me an AI prompt"
+â€¢ "Custom GPT steps"
+â€¢ "Make my own mascot AI"
 
-I’ll walk you through prompts + setup.`,
+I'll walk you through prompts + setup.`,
         ],
       },
       {
         keys: ["who are you", "what are you", "your name", "about you"],
         replies: [
-          "I'm Zaqzouqa! Chief Fun Officer of Marketing City. I help with social media — and I can teach you how to make an AI Zaqzouqa too. Ask “How to make Zaqzouqa on AI”!",
+          "I'm Zaqzouqa! Chief Fun Officer of Marketing City. I help with social media — and I can teach you how to make an AI Zaqzouqa too. Ask "How to make Zaqzouqa on AI"!",
           "Zaqzouqa here — I keep brands bold and social feeds less boring. Want my AI recipe? Ask for an AI prompt!",
         ],
       },
@@ -1046,14 +1150,14 @@ I’ll walk you through prompts + setup.`,
       {
         keys: ["brand", "branding", "logo", "identity", "branding street"],
         replies: [
-          "Branding Street is my favorite district! We craft logos, voice, and visual systems that make people go “wait… who are THEY?” in the best way.",
-          "Strong branding makes social media 10x easier — same colors, same voice, same vibe. Want social tips after branding? Ask “how to win on social media”.",
+          "Branding Street is my favorite district! We craft logos, voice, and visual systems that make people go "wait... who are THEY?" in the best way.",
+          "Strong branding makes social media 10x easier — same colors, same voice, same vibe. Want social tips after branding? Ask "how to win on social media".",
         ],
       },
       {
-        keys: ["content", "café", "cafe", "copy", "write caption", "captions"],
+        keys: ["content", "cafÃ©", "cafe", "copy", "write caption", "captions"],
         replies: [
-          "Content Café is always open! Clear story + personality = posts people finish. Want ideas? Say “give me content ideas”.",
+          "Content CafÃ© is always open! Clear story + personality = posts people finish. Want ideas? Say "give me content ideas".",
           "Good content = useful + you. Ask for a 7-day plan or caption help anytime!",
         ],
       },
@@ -1062,49 +1166,49 @@ I’ll walk you through prompts + setup.`,
         replies: [
 `Social Media Station — all aboard!
 
-Tell me what you need and I’ll guide you:
-• “How to win on social media” — full basics
-• “Give me content ideas”
-• “Best posting schedule?”
-• “How to grow followers”
-• “Reels tips”
+Tell me what you need and I'll guide you:
+â€¢ "How to win on social media" — full basics
+â€¢ "Give me content ideas"
+â€¢ "Best posting schedule?"
+â€¢ "How to grow followers"
+â€¢ "Reels tips"
 
-Or just say your niche + platform and I’ll customize!`,
-          "Want your socials alive (not a ghost town)? Start with one platform, a clear bio, and 3 posts a week. Ask “how to win on social media” for the full map!",
+Or just say your niche + platform and I'll customize!`,
+          "Want your socials alive (not a ghost town)? Start with one platform, a clear bio, and 3 posts a week. Ask "how to win on social media" for the full map!",
         ],
       },
       {
         keys: ["ad", "ads", "advertise", "campaign", "meta ads", "google ads", "boost"],
         replies: [
           "Ads Avenue = smart ads, real results, zero coin-wasting. Warm up organic social first, then boost winners. Want organic tips before ads?",
-          "Ads without strategy is expensive yelling. Fix content + targeting, then spend. Ask “how to win on social media” first!",
+          "Ads without strategy is expensive yelling. Fix content + targeting, then spend. Ask "how to win on social media" first!",
         ],
       },
       {
         keys: ["strateg", "roadmap", "square"],
         replies: [
-          "Strategy Square is big-picture land. For social, that means: audience → message → content pillars → schedule → measure. Want that broken down?",
+          "Strategy Square is big-picture land. For social, that means: audience â†’ message â†’ content pillars â†’ schedule â†’ measure. Want that broken down?",
           "No vibe-only plans here. We map the journey, then fill it with fun posts. Ask for a 7-day content plan!",
         ],
       },
       {
         keys: ["analyt", "data", "report", "tower", "insight", "insights", "metrics"],
         replies: [
-          "Watch: saves, shares, watch time, profile visits, DMs — not just likes. Double what works. Ask “how to grow followers” for action steps!",
+          "Watch: saves, shares, watch time, profile visits, DMs — not just likes. Double what works. Ask "how to grow followers" for action steps!",
           "Numbers don't have to be scary! Check weekly: top post, worst post, what to try next.",
         ],
       },
       {
         keys: ["price", "pricing", "package", "cost", "how much", "starter", "builder", "empire", "plan"],
         replies: [
-          "Packages in the city:\n• Starter Explorer — from $899/mo\n• City Builder — from $2,499/mo (most popular!)\n• Empire Maker — from $4,999/mo\nWe can run your socials for you too — or I can teach you here for free tips!",
-          "City Builder includes social media management energy. Want DIY tips first? Ask “how to win on social media”.",
+          "Packages in the city:\nâ€¢ Starter Explorer — from $899/mo\nâ€¢ City Builder — from $2,499/mo (most popular!)\nâ€¢ Empire Maker — from $4,999/mo\nWe can run your socials for you too — or I can teach you here for free tips!",
+          "City Builder includes social media management energy. Want DIY tips first? Ask "how to win on social media".",
         ],
       },
       {
         keys: ["start", "started", "begin", "join", "work with", "hire", "contact", "talk"],
         replies: [
-          "Yesss! DIY path: ask “how to win on social media”. Done-for-you path: check packages on the main site. Which vibe are you?",
+          "Yesss! DIY path: ask "how to win on social media". Done-for-you path: check packages on the main site. Which vibe are you?",
           "Getting started: 1) fix bio 2) pick 3 content pillars 3) post this week. Want me to walk you through it?",
         ],
       },
@@ -1112,15 +1216,15 @@ Or just say your niche + platform and I’ll customize!`,
         keys: ["fun fact", "joke", "funny", "secret", "snack"],
         replies: [
           "Fun fact: I know every shortcut in Marketing City. Shhh. Also I never say no to snacks during brainstorms.",
-          "Fun fact: Strategy Square has the best coffee. Content Café has the best gossip. Ads Avenue has the best “we got results!” dances.",
-          "Secret: the most popular package is City Builder… because growing brands love a full city tour.",
+          "Fun fact: Strategy Square has the best coffee. Content CafÃ© has the best gossip. Ads Avenue has the best "we got results!" dances.",
+          "Secret: the most popular package is City Builder... because growing brands love a full city tour.",
         ],
       },
       {
         keys: ["help", "what can you", "what do you", "services", "district", "explore", "city"],
         replies: [
-          "I’m your social media tour guide! Ask about winning on social, content ideas, posting schedules, reels, growth, bios, or engagement. Or say your niche and I’ll customize.",
-          "I help people get good at social media — and still have fun. Start with “how to win on social media”!",
+          "I'm your social media tour guide! Ask about winning on social, content ideas, posting schedules, reels, growth, bios, or engagement. Or say your niche and I'll customize.",
+          "I help people get good at social media — and still have fun. Start with "how to win on social media"!",
         ],
       },
       {
@@ -1140,7 +1244,7 @@ Or just say your niche + platform and I’ll customize!`,
     ];
 
     const FALLBACKS = [
-      "Ooh I almost missed that stop! Try: “how to win on social media”, “How to make Zaqzouqa on AI”, or “give me an AI prompt”.",
+      "Ooh I almost missed that stop! Try: "how to win on social media", "How to make Zaqzouqa on AI", or "give me an AI prompt".",
       "My brain runs on social tips + AI-mascot recipes. Ask for Custom GPT steps or content ideas!",
       "Not sure I caught that. Tap a chip — social growth or making an AI Zaqzouqa are my specialties today!",
     ];
@@ -1168,7 +1272,7 @@ Or just say your niche + platform and I’ll customize!`,
 
       if (who === "bot") {
         row.innerHTML = `
-          <div class="bubble-avatar"><img src="/mascot.png" alt="" /></div>
+          <div class="bubble-avatar"><img src="mascot.png" alt="" /></div>
           <div>
             <div class="bubble"></div>
             <div class="meta">${nowTime()}</div>
@@ -1195,7 +1299,7 @@ Or just say your niche + platform and I’ll customize!`,
       row.className = "row bot";
       row.id = "typingRow";
       row.innerHTML = `
-        <div class="bubble-avatar"><img src="/mascot.png" alt="" /></div>
+        <div class="bubble-avatar"><img src="mascot.png" alt="" /></div>
         <div class="bubble typing" aria-label="Zaqzouqa is typing">
           <span></span><span></span><span></span>
         </div>
@@ -1257,7 +1361,7 @@ Or just say your niche + platform and I’ll customize!`,
       messagesEl.innerHTML = "";
       addDayPill();
       addMessage(
-        "Hiii! I'm Zaqzouqa. Ask me how to win on social media — or “How to make Zaqzouqa on AI” if you want to build a chatbot like me!",
+        "Hiii! I'm Zaqzouqa. Ask me how to win on social media — or "How to make Zaqzouqa on AI" if you want to build a chatbot like me!",
         "bot"
       );
       input.focus();

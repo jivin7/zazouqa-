@@ -2,10 +2,5 @@
   "name": "zaqzouqa-marketing-city",
   "version": "1.0.0",
   "private": true,
-  "description": "Zaqzouqa Marketing City — static marketing site with chat guide",
-  "scripts": {
-    "dev": "npx --yes serve . -l 3000",
-    "start": "npx --yes serve . -l 3000",
-    "preview": "npx --yes serve . -l 3000"
-  }
+  "description": "Zaqzouqa Marketing City — flat static HTML site"
 }

@@ -1,39 +1,34 @@
 # Zaqzouqa Marketing City
 
-Flat static site — **all files in one folder**. No `public/`, no Next.js.
+Flat static HTML site — all files in one folder.
 
-## Files
+## Deploy on Vercel (important)
 
-| File | What |
-|------|------|
-| `index.html` | Home page |
-| `chat.html` | Chat with Zaqzouqa |
-| `*.png` / `icon.svg` | Images (same folder as the HTML) |
-| `vercel.json` | Vercel config |
+Your Vercel project may still be set to **Next.js**. That causes deploy failures now that Next is gone.
 
-Image paths are root-level, e.g. `/mascot.png`, `/hero-duo.png`.
+### Fix in Vercel dashboard
+
+1. Open the project → **Settings** → **General**
+2. **Framework Preset** → set to **Other**
+3. **Build Command** → enable Override → leave **empty**
+4. **Output Directory** → enable Override → set to `.`  (or leave empty)
+5. **Install Command** → enable Override → leave **empty**
+6. Save → **Deployments** → Redeploy (or push again)
+
+### Or push this repo
+
+`vercel.json` already forces: no framework, no build, no install, output `.`
 
 ## Local preview
 
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-## Deploy to GitHub + Vercel
+Open `index.html` after a local static server, or:
 
 ```bash
-git init
-git add .
-git commit -m "Flat static Zaqzouqa site"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
-git push -u origin main
+npx serve .
 ```
 
-Then on [vercel.com/new](https://vercel.com/new): import the repo → **Deploy** (framework: Other / no build).
+## Pages
 
-Or in an existing Vercel project: push, then **Redeploy**.
-
-After deploy, check: `https://YOUR-SITE.vercel.app/mascot.png`
+- `/` → `index.html`
+- `/chat` → `chat.html`
+- Images → same folder (`/mascot.png`, `/hero-duo.png`, …)
